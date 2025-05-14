@@ -46,56 +46,56 @@ public class SocialMediaController {
     // create
     // DONE
     @PostMapping("/messages")
-    public Message createMessage(@RequestBody Message message) throws MessageNotCreatedException {
-        return messageService.createMessage(message);
+    public ResponseEntity<Message> createMessage(@RequestBody Message message) throws MessageNotCreatedException {
+        return ResponseEntity.ok(messageService.createMessage(message));
     }
 
     // delete
     // DONE
     @DeleteMapping("/messages/{message_id}")
-    public Integer deleteMessage(@PathVariable Integer message_id) {
-        return messageService.deleteMessage(message_id);
+    public ResponseEntity<Integer> deleteMessage(@PathVariable Integer message_id) {
+        return ResponseEntity.ok(messageService.deleteMessage(message_id));
     }
 
     // update
     // DONE
     @PatchMapping(value = "/messages/{message_id}")
-    public Integer updateMessage(@PathVariable Integer message_id, @RequestBody Message updatedMessage) {
-      return messageService.updateMessage(message_id, updatedMessage);
+    public ResponseEntity<Integer> updateMessage(@PathVariable Integer message_id, @RequestBody Message updatedMessage) {
+      return ResponseEntity.ok(messageService.updateMessage(message_id, updatedMessage));
     }
 
     // get all
     // DONE
     @GetMapping("/messages")
-    public List<Message> getAllMessages() {
-        return messageService.getAllMessages();
+    public ResponseEntity<List<Message>> getAllMessages() {
+        return ResponseEntity.ok(messageService.getAllMessages());
     }
 
     // get by account id
     // DONE
     @GetMapping("/accounts/{account_id}/messages")
-    public List<Message> getMessagesByAccountId(@PathVariable Integer account_id) {
-        return messageService.getMessagesByAccountId(account_id);
+    public ResponseEntity<List<Message>> getMessagesByAccountId(@PathVariable Integer account_id) {
+        return ResponseEntity.ok(messageService.getMessagesByAccountId(account_id));
     }
 
     // get by id
     // DONE
     @GetMapping("/messages/{message_id}")
-    public Message getMessageById(@PathVariable Integer message_id) {
-        return messageService.getMessageById(message_id);
+    public ResponseEntity<Message> getMessageById(@PathVariable Integer message_id) {
+        return ResponseEntity.ok(messageService.getMessageById(message_id));
     }
 
     // get existing account
     // DONE
     @PostMapping("/login")
-    public Account accountLogin(@RequestBody Account account) {
-        return accountService.accountLogin(account.getUsername(), account.getPassword());
+    public ResponseEntity<Account> accountLogin(@RequestBody Account account) {
+        return ResponseEntity.ok(accountService.accountLogin(account.getUsername(), account.getPassword()));
     }
 
     // create new account
     // DONE
     @PostMapping("/register")
-    public Account accountRegister(@RequestBody Account account) {
-        return accountService.accountRegister(account.getUsername(), account.getPassword());
+    public ResponseEntity<Account> accountRegister(@RequestBody Account account) {
+        return ResponseEntity.ok(accountService.accountRegister(account.getUsername(), account.getPassword()));
     }
 }
